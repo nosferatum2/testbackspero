@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testbackspero</title>
+</head>
+<style>
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  button[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+  div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 30%;
+  }
+</style>
+
+<body>
+  <h1> Work with data </h1>
+
+  <div>
+    <form action="/users" method="POST">
+      <input type="text" placeholder="name" name="name">
+      <input type="text" placeholder="surname" name="surname">
+      <input type="number" placeholder="age" name="age">
+      <input type="email" placeholder="email" name="mail">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <div>
+    <form action="/" method="GET" id="getmail" onsubmit="validateForm()">
+      <input type="email" placeholder="email" name="mail">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <hr>
+  <h3>All users from database</h3>
+  <ul class="users">
+    <% for(var i=0; i < users.length; i++) {%>
+      <li class="user">
+        <!-- Output quote from the iterated quote object -->
+        <span>
+          <%= users[i].name %>
+        </span>
+        <span>
+          <%= users[i].surname %>
+        </span>
+        <span>
+          <%= users[i].age %>
+        </span>
+        <span>
+          <%= users[i].mail %>
+        </span>
+      </li>
+      <% } %>
+  </ul>
+  <hr>
+  <script>
+
+    // return current user route
+    function validateForm() {
+      var getMail = document.getElementById('getmail');
+      var getAtrr = getMail.getAttribute('action') + getMail['mail'].value;
+
+      getMail.setAttribute('action', getAtrr);
+    }
+  </script>
+</body>
+
+</html>
